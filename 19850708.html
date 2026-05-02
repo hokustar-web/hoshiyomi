@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星読み鑑定書 ✦ 1985.7.8</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --panel:  rgba(255,255,255,0.72);
+    --panel2: rgba(255,255,255,0.52);
+    --border: rgba(160,210,240,0.55);
+    --navy:   #1c3d6b;
+    --blue:   #3a82c0;
+    --mid:    #6aaad8;
+    --pale:   #c4e0f5;
+    --sub:    #4a7aaa;
+    --posb:   rgba(58,140,90,0.09);
+    --negb:   rgba(176,64,64,0.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  @keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:1;transform:scale(1.6)}}
+  @keyframes drift{0%{transform:translateY(0) rotate(0deg);opacity:.7}100%{transform:translateY(-110vh) rotate(400deg);opacity:0}}
+  @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  @keyframes glow{0%,100%{box-shadow:0 0 8px rgba(168,216,248,.28),0 2px 16px rgba(42,123,191,.07)}50%{box-shadow:0 0 22px rgba(168,216,248,.55),0 4px 28px rgba(42,123,191,.15)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes spin-sparkle{0%{transform:rotate(0deg) scale(1);opacity:.6}50%{transform:rotate(180deg) scale(1.4);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:.6}}
+  @keyframes halo{0%,100%{opacity:.35}50%{opacity:.7}}
+
+  body{
+    background:linear-gradient(155deg,#dff0fb 0%,#cce3f4 35%,#d5ebf8 70%,#e2f2fc 100%);
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--navy);min-height:100vh;overflow-x:hidden;
+  }
+
+  /* ── starfield ── */
+  #starfield{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .star{position:absolute;border-radius:50%;background:rgba(168,216,248,1);animation:twinkle var(--d,3s) ease-in-out var(--dl,0s) infinite}
+  .sp{position:absolute;color:rgba(100,175,225,.6);animation:twinkle var(--d,4s) ease-in-out var(--dl,0s) infinite;user-select:none;line-height:1}
+  .glitter{position:fixed;width:3px;height:3px;border-radius:50%;background:rgba(168,216,248,.85);animation:drift var(--d,12s) linear var(--dl,0s) infinite;pointer-events:none;z-index:0}
+
+  .page{max-width:940px;margin:0 auto;padding:34px 20px 72px;position:relative;z-index:1}
+
+  /* pill */
+  .pill{
+    display:inline-block;
+    background:linear-gradient(120deg,rgba(255,255,255,.88) 0%,rgba(208,238,255,.85) 50%,rgba(255,255,255,.88) 100%);
+    background-size:200% 200%;animation:shimmer 4s ease infinite;
+    border:1px solid rgba(168,216,248,.75);border-radius:100px;
+    padding:5px 22px;font-size:11px;color:var(--blue);letter-spacing:.13em;
+    box-shadow:0 0 12px rgba(168,216,248,.4),0 0 28px rgba(168,216,248,.15);
+  }
+  .pill::before{content:'✦ '}.pill::after{content:' ✦'}
+
+  /* card */
+  .card{
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:16px;backdrop-filter:blur(8px);
+    animation:glow 5s ease-in-out infinite;
+  }
+
+  /* sep */
+  .sep{text-align:center;margin:32px 0 18px;position:relative}
+  .sep::before,.sep::after{content:'';position:absolute;top:50%;height:1px;width:32%;background:linear-gradient(90deg,transparent,var(--pale))}
+  .sep::before{left:0}.sep::after{right:0;background:linear-gradient(90deg,var(--pale),transparent)}
+
+  /* ── HEADER ── */
+  .header{text-align:center;padding:42px 0 24px}
+  .h-deco{font-size:16px;color:rgba(106,170,216,.8);letter-spacing:10px;margin-bottom:8px;text-shadow:0 0 12px rgba(106,170,216,.7)}
+  .h-title{
+    font-family:'Noto Serif JP',serif;
+    font-size:clamp(18px,4vw,26px);font-weight:700;color:var(--navy);
+    letter-spacing:.4em;margin-bottom:7px;
+    text-shadow:0 0 22px rgba(168,216,248,.65),0 0 48px rgba(168,216,248,.3);
+    animation:float 5s ease-in-out infinite;
+    position:relative;display:inline-block;
+  }
+  .h-title::before,.h-title::after{
+    content:'✦';position:absolute;top:-4px;
+    font-size:14px;color:rgba(168,216,248,.9);
+    animation:spin-sparkle 4s ease-in-out infinite;
+  }
+  .h-title::before{left:-24px}.h-title::after{right:-28px;animation-delay:2s}
+  .h-sub{font-size:11.5px;color:var(--sub);letter-spacing:.23em;margin-bottom:24px}
+
+  /* BIG 3 */
+  .big3{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:14px;margin-top:20px}
+  .b3c{
+    background:var(--panel);border:1px solid rgba(168,216,248,.65);border-radius:16px;
+    padding:20px 14px 22px;text-align:center;backdrop-filter:blur(8px);
+    position:relative;overflow:hidden;animation:glow 5s ease-in-out infinite;
+  }
+  .b3c.center{
+    background:rgba(255,255,255,.9);
+    border-color:rgba(168,216,248,.9);
+    box-shadow:0 0 32px rgba(168,216,248,.5),inset 0 0 20px rgba(255,255,255,.5);
+    animation-duration:3.5s;
+  }
+  .b3c::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,transparent,rgba(168,216,248,.95),rgba(255,255,255,1),rgba(168,216,248,.95),transparent);
+    background-size:200% 100%;animation:shimmer 3s ease infinite;
+  }
+  .b3c::after{content:'✦';position:absolute;top:9px;right:11px;font-size:10px;color:rgba(168,216,248,.85);animation:spin-sparkle 5s ease-in-out infinite}
+  .b3l{font-size:10px;color:var(--sub);letter-spacing:.15em;margin-bottom:3px}
+  .b3s{
+    font-family:'Noto Serif JP',serif;font-size:clamp(19px,4vw,26px);font-weight:700;
+    color:var(--navy);margin:5px 0 6px;letter-spacing:.12em;
+    text-shadow:0 0 14px rgba(168,216,248,.55);
+  }
+  .b3t{font-size:10.5px;color:var(--blue);font-weight:500;margin-bottom:10px}
+  .b3d{font-size:10px;color:var(--sub);line-height:1.85;text-align:left}
+
+  /* MID */
+  .mid-grid{display:grid;grid-template-columns:188px 1fr 1fr;gap:14px;align-items:start;margin-top:22px}
+  .bc{padding:22px 14px;text-align:center}
+  .bd{font-size:12px;color:var(--mid);letter-spacing:5px;margin:10px 0;text-shadow:0 0 10px rgba(106,170,216,.8)}
+  .bdate{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:9px}
+  .binfo{font-size:10px;color:var(--sub);line-height:2.2}
+  .binfo strong{color:var(--navy);font-size:11px}
+  .cc{padding:14px;text-align:center}
+  .cn{font-size:9px;color:var(--sub);margin-top:7px;letter-spacing:.04em}
+  .pc{padding:14px 16px}
+  table.pt{width:100%;border-collapse:collapse;font-size:10px}
+  table.pt thead th{color:var(--sub);font-weight:500;font-size:9.5px;padding:2px 4px 6px;border-bottom:1px solid var(--border);text-align:center;letter-spacing:.04em;writing-mode:horizontal-tb;white-space:nowrap}
+  table.pt tbody tr{border-bottom:1px solid rgba(160,210,240,.18)}
+  table.pt tbody tr:last-child{border-bottom:none}
+  table.pt td{padding:4.5px 4px;color:var(--navy);vertical-align:middle;text-align:center}
+  .psym{font-size:13px;width:20px;text-align:center}
+  .htag{background:rgba(58,130,192,.12);border-radius:5px;padding:1px 5px;font-size:9px;color:var(--blue);text-align:center;display:inline-block}
+  .asc-row td{color:var(--blue);font-weight:600}
+
+  /* TALENTS */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .tc{padding:18px 15px;text-align:center}
+  .tt{font-family:'Noto Serif JP',serif;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:10px;letter-spacing:.08em;text-shadow:0 0 10px rgba(168,216,248,.4)}
+  .td{font-size:10px;color:var(--sub);line-height:1.9;text-align:left}
+
+  /* ASPECTS */
+  .agrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .ac{padding:13px 15px;border-radius:13px;backdrop-filter:blur(6px);position:relative;overflow:hidden}
+  .ac::after{content:'✧';position:absolute;bottom:7px;right:10px;font-size:9px;color:rgba(168,216,248,.5);animation:twinkle 3.5s ease-in-out infinite}
+  .ac.pos{background:var(--posb);border:1px solid rgba(58,140,90,.2)}
+  .ac.neg{background:var(--negb);border:1px solid rgba(176,64,64,.18)}
+  .ah{display:flex;align-items:center;gap:6px;margin-bottom:7px;flex-wrap:wrap}
+  .ab{font-size:11px;font-weight:700;color:var(--navy)}
+  .as{font-size:14px}.as.pos{color:var(--blue)}.as.neg{color:#b04040}
+  .an{font-size:10px;color:var(--sub)}
+  .ao{margin-left:auto;font-size:9px;background:rgba(255,255,255,.65);border:1px solid var(--border);border-radius:20px;padding:1px 7px;color:var(--sub)}
+  .at{font-size:10px;color:var(--sub);line-height:1.88}
+
+  /* TRANSITS */
+  .tlist{display:flex;flex-direction:column;gap:11px}
+  .trc{padding:13px 16px;border-radius:13px;backdrop-filter:blur(6px);position:relative;overflow:hidden}
+  .trc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
+  .trc.major{background:rgba(123,91,191,.07);border:1px solid rgba(123,91,191,.22)}.trc.major::before{background:rgba(123,91,191,.5)}
+  .trc.pos{background:var(--posb);border:1px solid rgba(58,140,90,.18)}.trc.pos::before{background:rgba(58,140,90,.45)}
+  .trc.neg{background:var(--negb);border:1px solid rgba(176,64,64,.16)}.trc.neg::before{background:rgba(176,64,64,.45)}
+  .trh{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap;padding-left:9px}
+  .trb{font-size:9px;font-weight:700;border-radius:20px;padding:2px 9px;letter-spacing:.05em}
+  .trb.major{background:rgba(123,91,191,.14);color:#5a3a9a;border:1px solid rgba(123,91,191,.28)}
+  .trb.pos{background:rgba(58,140,90,.11);color:#2a6a3a;border:1px solid rgba(58,140,90,.22)}
+  .trb.neg{background:rgba(176,64,64,.09);color:#904040;border:1px solid rgba(176,64,64,.2)}
+  .trbd{font-size:11px;font-weight:700;color:var(--navy)}
+  .trs{font-size:14px}
+  .tro{margin-left:auto;font-size:9px;background:rgba(255,255,255,.65);border:1px solid var(--border);border-radius:20px;padding:1px 7px;color:var(--sub)}
+  .trt{font-size:10.5px;color:var(--sub);line-height:1.9;padding-left:9px}
+
+  /* LWM */
+  .lrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .lc{padding:18px}
+  .li{display:flex;gap:10px;margin-bottom:13px}.li:last-child{margin-bottom:0}
+  .lb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,rgba(168,216,248,.3),rgba(58,130,192,.18));border:1px solid rgba(168,216,248,.65);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px;box-shadow:0 0 9px rgba(168,216,248,.45)}
+  .lt{font-size:10.5px;color:var(--sub);line-height:1.88}
+  .lt strong{color:var(--navy);display:block;margin-bottom:3px;font-size:11px}
+
+  .thc{padding:18px;margin-bottom:13px}
+  .the{font-size:11px;color:var(--sub);letter-spacing:.1em;margin-bottom:8px}
+  .thq{font-family:'Noto Serif JP',serif;font-size:clamp(12px,2.2vw,15px);font-weight:700;color:var(--navy);text-align:center;line-height:1.7;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 0;margin:8px 0 12px;letter-spacing:.06em;text-shadow:0 0 12px rgba(168,216,248,.4)}
+  .thb{font-size:10px;color:var(--sub);line-height:1.95}
+
+  .tpc{padding:16px 18px}
+  .tph{font-size:11px;color:var(--blue);font-weight:700;letter-spacing:.1em;margin-bottom:11px}
+  .tpi{display:flex;align-items:flex-start;gap:7px;margin-bottom:9px;font-size:10.5px;color:var(--sub);line-height:1.6}
+  .tpi:last-child{margin-bottom:0}
+  .tpm{color:var(--mid);flex-shrink:0;text-shadow:0 0 7px rgba(106,170,216,.7)}
+  .tpa{color:var(--navy);font-weight:600;white-space:nowrap;flex-shrink:0}
+
+  /* MESSAGE */
+  .mc{
+    padding:30px 34px;margin-top:26px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(255,255,255,.78) 0%,rgba(218,240,255,.72) 100%);
+  }
+  .mc::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 8% 18%,rgba(168,216,248,.2) 0%,transparent 50%),radial-gradient(circle at 92% 82%,rgba(168,216,248,.16) 0%,transparent 50%)}
+  .mc::after{content:'You are born to shine ✦';position:absolute;right:26px;bottom:18px;font-family:'Cinzel',serif;font-size:11.5px;color:rgba(58,130,192,.2);letter-spacing:.14em;pointer-events:none}
+  .mh{font-size:13px;color:var(--navy);font-weight:700;letter-spacing:.1em;margin-bottom:15px;text-shadow:0 0 12px rgba(168,216,248,.5)}
+  .mh::before{content:'✦ ';color:var(--mid)}
+  .mb{font-size:11.5px;color:var(--sub);line-height:2.2;position:relative;z-index:1}
+  .mb p{margin-bottom:9px}.mb p:last-child{margin-bottom:0}
+
+  .footer{text-align:center;margin-top:30px;padding-top:18px;border-top:1px solid var(--border);font-size:10px;color:var(--sub);letter-spacing:.13em}
+  .footer::before,.footer::after{content:' ✦ ';color:var(--mid);text-shadow:0 0 7px rgba(106,170,216,.8)}
+
+  @media(max-width:700px){
+    .big3,.mid-grid,.tgrid,.agrid,.lrow{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  // dots
+  for(let i=0;i<65;i++){
+    const e=document.createElement('div');e.className='star';
+    const s=Math.random()*2.8+0.8;
+    e.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*5}s;--dl:${Math.random()*5}s`;
+    sf.appendChild(e);
+  }
+  // symbols
+  const sym=['✦','✧','⋆','·','✺','✸','★'];
+  for(let i=0;i<30;i++){
+    const e=document.createElement('div');e.className='sp';
+    e.textContent=sym[Math.floor(Math.random()*sym.length)];
+    const s=7+Math.random()*11;
+    e.style.cssText=`font-size:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${3+Math.random()*6}s;--dl:${Math.random()*6}s`;
+    sf.appendChild(e);
+  }
+  // glitter
+  for(let i=0;i<20;i++){
+    const e=document.createElement('div');e.className='glitter';
+    e.style.cssText=`left:${Math.random()*100}%;top:${100+Math.random()*20}%;--d:${8+Math.random()*14}s;--dl:${-Math.random()*14}s`;
+    document.body.appendChild(e);
+  }
+})();
+</script>
+
+<div class="page">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="h-deco">） ✦ ✧ ✦ （</div>
+  <h1 class="h-title">星 読 み 鑑 定 書</h1>
+  <p class="h-sub">〜 あなたらしく輝くための星の地図 〜</p>
+  <span class="pill">あなたの基本の3つの星</span>
+
+  <!-- BIG 3: 1=太陽星座  2=月星座（中央・大）  3=上昇星座 -->
+  <div class="big3" style="margin-top:20px">
+    <!-- 1: 太陽星座 -->
+    <div class="b3c">
+      <div class="b3l">☉ 太陽星座</div>
+      <div class="b3s">蟹座</div>
+      <div class="b3t">深い愛情と感受性で人を包み込む人</div>
+      <p class="b3d">蟹座の太陽は家族・故郷・安心を大切にする魂。太陽☌火星の配置が、優しさの奥に強さと行動力を宿らせます。守るべきものへの情熱が、あなたの原動力です。</p>
+    </div>
+    <!-- 2: 月星座（中央） -->
+    <div class="b3c center">
+      <div class="b3l">☽ 月星座</div>
+      <div class="b3s">魚座</div>
+      <div class="b3t">深い共感と想像力を持つ感受性豊かな心</div>
+      <p class="b3d">魚座の月は境界を超えた共感力と詩的な感受性の象徴。月△土星が感情に骨格と深みを与え、流されずに自分を守る力もあわせ持ちます。</p>
+    </div>
+    <!-- 3: 上昇星座 -->
+    <div class="b3c">
+      <div class="b3l">★ Asc 上昇星座</div>
+      <div class="b3s">双子座</div>
+      <div class="b3t">知性と好奇心で世界を軽やかに駆け巡る人</div>
+      <p class="b3d">双子座のASCは、明るく知的で話題豊富な第一印象。情報を集め、言葉で橋を架ける柔軟な知性が持ち味です。蟹座の深さと魚座の感性を、軽やかな言葉で世界に伝えます。</p>
+    </div>
+  </div>
+</header>
+
+<!-- MID -->
+<div class="mid-grid">
+  <div class="card bc">
+    <div class="bd">✦ ✧ ✦</div>
+    <div class="bdate">1985.7.8</div>
+    <div class="binfo"><strong>01:30 生まれ</strong><br>福島県<br>郡山市<br><br>北緯 37°14′<br>東経 140°13′</div>
+    <div class="bd" style="margin-top:14px">✧ ✦ ✧</div>
+  </div>
+
+  <!-- CHART -->
+  <div class="card cc">
+    <span class="pill" style="font-size:10px;margin-bottom:12px;display:inline-block">あなたのホロスコープ</span>
+    <svg viewBox="0 0 310 310" style="width:100%;max-width:290px;display:block;margin:0 auto">
+      <defs>
+        <radialGradient id="cg"><stop offset="0%" stop-color="#f5fcff"/><stop offset="100%" stop-color="#c6e2f4"/></radialGradient>
+        <radialGradient id="ig"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#ddf0fa"/></radialGradient>
+        <filter id="gf"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- outer ring bg (r=142) -->
+      <circle cx="155" cy="155" r="142" fill="url(#cg)" stroke="#8cc4e4" stroke-width="1.2"/>
+      <!-- zodiac symbol band outer border (r=118) -->
+      <circle cx="155" cy="155" r="118" fill="rgba(235,248,255,0.55)" stroke="#a2cfe8" stroke-width="0.7"/>
+      <!-- JP name band outer border = inner circle outer (r=88) -->
+      <circle cx="155" cy="155" r="88" fill="url(#ig)" stroke="#a8d4ec" stroke-width="0.9"/>
+      <!-- core -->
+      <circle cx="155" cy="155" r="32" fill="rgba(255,255,255,0.75)" stroke="#c0dff0" stroke-width="0.8"/>
+
+      <!-- 12 division lines (r=88 to r=142) -->
+      <g stroke="#9cc8e4" stroke-width="0.6">
+        <line x1="155" y1="13"  x2="155" y2="67"/>
+        <line x1="226" y1="33"  x2="204" y2="71"/>
+        <line x1="275" y1="84"  x2="244" y2="102"/>
+        <line x1="297" y1="155" x2="243" y2="155"/>
+        <line x1="275" y1="226" x2="244" y2="208"/>
+        <line x1="226" y1="275" x2="204" y2="239"/>
+        <line x1="155" y1="297" x2="155" y2="243"/>
+        <line x1="84"  y1="275" x2="106" y2="239"/>
+        <line x1="33"  y1="226" x2="66"  y2="208"/>
+        <line x1="13"  y1="155" x2="67"  y2="155"/>
+        <line x1="33"  y1="84"  x2="66"  y2="102"/>
+        <line x1="84"  y1="33"  x2="106" y2="71"/>
+      </g>
+
+      <!-- zodiac symbols (outer band r≈130, between r=118 and r=142) -->
+      <g font-size="12" fill="#2a72b0" text-anchor="middle" dominant-baseline="middle" opacity="0.9">
+        <text x="155" y="22">♋</text>
+        <text x="222" y="41">♌</text>
+        <text x="269" y="88">♍</text>
+        <text x="284" y="155">♎</text>
+        <text x="269" y="222">♏</text>
+        <text x="222" y="269">♐</text>
+        <text x="155" y="284">♑</text>
+        <text x="88"  y="269">♒</text>
+        <text x="41"  y="222">♓</text>
+        <text x="26"  y="155">♈</text>
+        <text x="41"  y="88">♉</text>
+        <text x="88"  y="41">♊</text>
+      </g>
+
+      <!-- Japanese sign names (between r=88 and r=118, midpoint r=103)
+           Each segment midpoint angle, 30° apart, starting from top=蟹座(90°).
+           x = 155 + 103*sin(θ),  y = 155 - 103*cos(θ)
+           θ=0°(top)→蟹, 30°→獅子, 60°→乙女, 90°→天秤, 120°→蠍, 150°→射手
+           180°→山羊, 210°→水瓶, 240°→魚, 270°→牡羊, 300°→牡牛, 330°→双子 -->
+      <g font-size="6.8" fill="#1a3d6b" text-anchor="middle" dominant-baseline="middle" opacity="0.88">
+        <text x="155" y="52">蟹座</text>       <!-- θ=0°   x=155+0=155,   y=155-103=52  -->
+        <text x="207" y="66">獅子座</text>     <!-- θ=30°  x=155+51.5=207, y=155-89=66  -->
+        <text x="244" y="104">乙女座</text>    <!-- θ=60°  x=155+89=244,   y=155-51.5=104 -->
+        <text x="258" y="155">天秤座</text>    <!-- θ=90°  x=155+103=258,  y=155 -->
+        <text x="244" y="206">蠍座</text>      <!-- θ=120° x=155+89=244,   y=155+51.5=206 -->
+        <text x="207" y="244">射手座</text>    <!-- θ=150° x=155+51.5=207, y=155+89=244 -->
+        <text x="155" y="258">山羊座</text>    <!-- θ=180° x=155,          y=155+103=258 -->
+        <text x="103" y="244">水瓶座</text>    <!-- θ=210° x=155-51.5=104, y=155+89=244 -->
+        <text x="66"  y="206">魚座</text>      <!-- θ=240° x=155-89=66,    y=155+51.5=206 -->
+        <text x="52"  y="155">牡羊座</text>    <!-- θ=270° x=155-103=52,   y=155 -->
+        <text x="66"  y="104">牡牛座</text>    <!-- θ=300° x=155-89=66,    y=155-51.5=104 -->
+        <text x="103" y="66">双子座</text>     <!-- θ=330° x=155-51.5=104, y=155-89=66 -->
+      </g>
+
+      <!-- aspect lines -->
+      <g opacity="0.38" stroke-width="0.8">
+        <line x1="141" y1="79" x2="228" y2="180" stroke="#60b878"/>
+        <line x1="230" y1="176" x2="228" y2="180" stroke="#90c0e0"/>
+        <line x1="141" y1="79" x2="94" y2="203" stroke="#60b878"/>
+        <line x1="230" y1="176" x2="141" y2="79" stroke="#90c0e0"/>
+        <line x1="213" y1="206" x2="80" y2="175" stroke="#90c0e0"/>
+        <line x1="228" y1="180" x2="94" y2="203" stroke="#60b878"/>
+      </g>
+
+      <!-- natal planets -->
+      <g font-size="10" fill="#1c3d6b" text-anchor="middle" dominant-baseline="middle">
+        <circle cx="230" cy="176" r="10" fill="rgba(255,248,208,.93)" stroke="#d4b800" stroke-width="0.9" filter="url(#gf)"/>
+        <text x="230" y="177" font-size="10">☉</text>
+        <circle cx="141" cy="79" r="10" fill="rgba(216,240,255,.93)" stroke="#88c0e0" stroke-width="0.9" filter="url(#gf)"/>
+        <text x="141" y="80" font-size="10">☽</text>
+        <circle cx="213" cy="206" r="9" fill="rgba(236,248,255,.93)" stroke="#88c0e0" stroke-width="0.9"/>
+        <text x="213" y="207" font-size="9">☿</text>
+        <circle cx="223" cy="118" r="9" fill="rgba(255,228,244,.93)" stroke="#e098c0" stroke-width="0.9"/>
+        <text x="223" y="119" font-size="9">♀</text>
+        <circle cx="228" cy="180" r="9" fill="rgba(255,224,218,.93)" stroke="#e08888" stroke-width="0.9"/>
+        <text x="228" y="181" font-size="9">♂</text>
+        <circle cx="101" cy="100" r="9" fill="rgba(228,250,224,.93)" stroke="#88c078" stroke-width="0.9"/>
+        <text x="101" y="101" font-size="9">♃</text>
+        <circle cx="94" cy="203" r="9" fill="rgba(234,234,255,.93)" stroke="#9888d0" stroke-width="0.9"/>
+        <text x="94" y="204" font-size="9">♄</text>
+        <circle cx="80" cy="175" r="9" fill="rgba(224,248,255,.93)" stroke="#68b8d0" stroke-width="0.9"/>
+        <text x="80" y="176" font-size="9">⛢</text>
+        <circle cx="78" cy="152" r="9" fill="rgba(214,230,255,.93)" stroke="#7898e0" stroke-width="0.9"/>
+        <text x="78" y="153" font-size="9">♆</text>
+        <circle cx="114" cy="221" r="9" fill="rgba(240,230,255,.93)" stroke="#a888d0" stroke-width="0.9"/>
+        <text x="114" y="222" font-size="9">♇</text>
+        <circle cx="210" cy="100" r="8" fill="rgba(226,244,255,.93)" stroke="#78b8d8" stroke-width="0.9"/>
+        <text x="210" y="101" font-size="8">☊</text>
+
+        <!-- ASC line -->
+        <line x1="233" y1="114" x2="281" y2="89" stroke="#e05555" stroke-width="1.9" opacity="0.85"/>
+        <circle cx="281" cy="89" r="5" fill="#e05555" opacity="0.8" filter="url(#gf)"/>
+        <text x="288" y="86" font-size="8" fill="#c04040">Asc</text>
+        <!-- MC line -->
+        <line x1="89" y1="97" x2="48" y2="62" stroke="#9060c0" stroke-width="1.4" opacity="0.75"/>
+        <text x="42" y="58" font-size="8" fill="#7040b0">MC</text>
+      </g>
+
+      <!-- animated glitter on chart -->
+      <g fill="rgba(168,216,248,0.65)">
+        <circle cx="78" cy="50" r="1.8"><animate attributeName="opacity" values=".2;1;.2" dur="2.4s" repeatCount="indefinite"/></circle>
+        <circle cx="244" cy="38" r="1.2"><animate attributeName="opacity" values=".5;1;.5" dur="3.1s" repeatCount="indefinite"/></circle>
+        <circle cx="274" cy="182" r="1.8"><animate attributeName="opacity" values=".2;.9;.2" dur="3.7s" repeatCount="indefinite"/></circle>
+        <circle cx="46" cy="234" r="1.2"><animate attributeName="opacity" values=".4;1;.4" dur="2.1s" repeatCount="indefinite"/></circle>
+        <circle cx="155" cy="20" r="1.5"><animate attributeName="opacity" values=".1;.8;.1" dur="4.2s" repeatCount="indefinite"/></circle>
+      </g>
+    </svg>
+    <p class="cn">※ホロスコープは天体の位置や角度の関係を表す図です</p>
+  </div>
+
+  <!-- PLANET TABLE -->
+  <div class="card pc">
+    <span class="pill" style="font-size:10px;margin-bottom:11px;display:inline-block">あなたの配置</span>
+    <table class="pt">
+      <thead><tr><th>天体</th><th>サイン</th><th>度数</th><th>H</th></tr></thead>
+      <tbody>
+        <tr><td class="psym">☉</td><td>太陽 蟹座</td><td>15°29′</td><td><span class="htag">2H</span></td></tr>
+        <tr><td class="psym">☽</td><td>月 魚座</td><td>19°22′</td><td><span class="htag">11H</span></td></tr>
+        <tr><td class="psym">☿</td><td>水星 蟹座</td><td>11°04′</td><td><span class="htag">4H</span></td></tr>
+        <tr><td class="psym">♀</td><td>金星 双子座</td><td>21°27′</td><td><span class="htag">12H</span></td></tr>
+        <tr><td class="psym">♂</td><td>火星 蟹座</td><td>18°38′</td><td><span class="htag">3H</span></td></tr>
+        <tr><td class="psym">♃</td><td>木星 水瓶座</td><td>15°19′</td><td><span class="htag">10H</span></td></tr>
+        <tr><td class="psym">♄</td><td>土星 蠍座</td><td>21°44′</td><td><span class="htag">6H</span></td></tr>
+        <tr><td class="psym">⛢</td><td>天王星 射手座</td><td>14°48′</td><td><span class="htag">7H</span></td></tr>
+        <tr><td class="psym">♆</td><td>海王星 山羊座</td><td>01°52′</td><td><span class="htag">8H</span></td></tr>
+        <tr><td class="psym">♇</td><td>冥王星 天秤座</td><td>01°56′</td><td><span class="htag">6H</span></td></tr>
+        <tr><td class="psym">☊</td><td>ノードN 牡牛座</td><td>15°13′</td><td><span class="htag">12H</span></td></tr>
+        <tr class="asc-row"><td class="psym">↑</td><td>ASC 双子座</td><td>02°14′</td><td><span class="htag">1H</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TALENTS -->
+<div class="sep"><span class="pill">あなたの魅力と才能</span></div>
+<div class="tgrid">
+  <div class="card tc"><div class="tt">保護力 × 行動力</div><p class="td">太陽☌火星（蟹座）で、穏やかな外見の奥に強靭な行動力と熱い情熱が宿ります。大切な人や信念を守るためなら果敢に動ける、頼もしい力があります。</p></div>
+  <div class="card tc"><div class="tt">共感力 × 直感の才</div><p class="td">魚座の月（11H）は深い共感と豊かな感受性の象徴。月△火星の活発なエネルギーと組み合わさり、人々の想いを受け取りながら素早く行動する才能が際立ちます。</p></div>
+  <div class="card tc"><div class="tt">知性 × 伝える力</div><p class="td">双子座のASCは明るく知的な第一印象と言葉を操る才能。水星△天王星の革新的な発想力が加わり、独創的なアイデアを分かりやすく伝えるコミュニケーション力が輝きます。</p></div>
+</div>
+
+<!-- ASPECTS -->
+<div class="sep"><span class="pill">主要なアスペクト（天体の角度関係）</span></div>
+<div class="agrid">
+  <div class="ac pos"><div class="ah"><span class="ab">☽ 月</span><span class="as pos">△</span><span class="ab">♂ 火星</span><span class="an">トライン</span><span class="ao">orb 0.7°</span></div><p class="at">月と火星のトライン。感情と行動力が調和し、直感的に動けるエネルギーが自然に湧いてきます。やりたいことへ素直に動ける、情熱的な行動力が魅力です。</p></div>
+  <div class="ac pos"><div class="ah"><span class="ab">☉ 太陽</span><span class="as pos">☌</span><span class="ab">♂ 火星</span><span class="an">コンジャンクション</span><span class="ao">orb 3.2°</span></div><p class="at">太陽と火星の合（蟹座）。情熱と行動力が自己の核心に宿ります。守るべきものへの熱い意志が、あなたを動かし続ける原動力です。</p></div>
+  <div class="ac pos"><div class="ah"><span class="ab">☽ 月</span><span class="as pos">△</span><span class="ab">♄ 土星</span><span class="an">トライン</span><span class="ao">orb 2.4°</span></div><p class="at">月と土星のトライン。感情に安定と骨格が生まれます。流されず地に足をつけて感情を扱える成熟した精神力。責任感と誠実さが深い信頼を生み出します。</p></div>
+  <div class="ac pos"><div class="ah"><span class="ab">☉ 太陽</span><span class="as pos">△</span><span class="ab">☽ 月</span><span class="an">トライン</span><span class="ao">orb 3.9°</span></div><p class="at">太陽と月のトライン。意志と感情が調和し、自分らしく生きることが自然にできる配置。内外のバランスが取れ、安定した自己表現ができます。</p></div>
+  <div class="ac pos"><div class="ah"><span class="ab">☿ 水星</span><span class="as pos">△</span><span class="ab">⛢ 天王星</span><span class="an">トライン</span><span class="ao">orb 3.7°</span></div><p class="at">水星と天王星のトライン。閃きと直感の知性。常識を超えた独創的なアイデアが次々と湧く、革新的な頭脳の持ち主です。</p></div>
+  <div class="ac neg"><div class="ah"><span class="ab">♂ 火星</span><span class="as neg">△</span><span class="ab">♄ 土星</span><span class="an">トライン</span><span class="ao">orb 3.1°</span></div><p class="at">火星と土星のトライン。行動力と自制心が絶妙なバランス。衝動的にならず計画的に動ける粘り強い実行力を持ちます。長期目標を着実に達成する才能。</p></div>
+</div>
+
+<!-- TRANSITS -->
+<div class="sep"><span class="pill">現在のトランジット（2026年5月）</span></div>
+<div class="tlist">
+  <div class="trc major"><div class="trh"><span class="trb major">⚡ MAJOR</span><span class="trbd">♃ 木星（現在）</span><span class="trs" style="color:#7b5bbf">☌</span><span class="trbd">♂ 火星（出生）</span><span class="tro">orb 0.4°</span></div><p class="trt">木星が出生火星にコンジャンクション。今年最大級の追い風です。行動力・情熱・挑戦する力が木星の拡大エネルギーで一気に開花する時。新しいことを始める、大きな目標に向かって動き出す——あらゆる行動がスケールアップします。恐れずに踏み出してください。</p></div>
+  <div class="trc pos"><div class="trh"><span class="trb pos">✦ 好調</span><span class="trbd">♃ 木星（現在）</span><span class="trs" style="color:#3a82c0">△</span><span class="trbd">☽ 月（出生）</span><span class="tro">orb 0.3°</span></div><p class="trt">木星が出生月にトライン。感情・日常生活・人間関係全体に幸運な広がりが訪れます。自分の感情に正直に動くことで、豊かな縁とチャンスが自然に引き寄せられる時期。</p></div>
+  <div class="trc pos"><div class="trh"><span class="trb pos">✦ 好調</span><span class="trbd">⛢ 天王星（現在）</span><span class="trs" style="color:#3a82c0">☌</span><span class="trbd">♀ 金星（出生）</span><span class="tro">orb 1.1°</span></div><p class="trt">天王星が出生金星にコンジャンクション。恋愛・人間関係・創造性に予期せぬ刺激的な変化が訪れやすい時期。自分らしい愛の形や価値観を再発見するチャンス。</p></div>
+  <div class="trc pos"><div class="trh"><span class="trb pos">✦ 好調</span><span class="trbd">♄ 土星（現在）</span><span class="trs" style="color:#3a82c0">△</span><span class="trbd">☿ 水星（出生）</span><span class="tro">orb 1.8°</span></div><p class="trt">土星が出生水星にトライン。思考・言葉・学びに構造と深みが加わります。長期プロジェクト、資格取得、文章執筆など知的な取り組みが実を結びやすいタイミング。</p></div>
+  <div class="trc neg"><div class="trh"><span class="trb neg">▲ 注意</span><span class="trbd">♂ 火星（現在）</span><span class="trs" style="color:#b04040">□</span><span class="trbd">☉ 太陽（出生）</span><span class="tro">orb 1.7°</span></div><p class="trt">現在の火星が出生太陽にスクエア。エネルギーが過剰になりやすく、衝動的な行動や摩擦が起きやすい時期。焦りや怒りを方向付け、計画的に動くことが大切。</p></div>
+  <div class="trc neg"><div class="trh"><span class="trb neg">▲ 注意</span><span class="trbd">☉ 太陽（現在）</span><span class="trs" style="color:#b04040">□</span><span class="trbd">☿ 水星（出生）</span><span class="tro">orb 0.6°</span></div><p class="trt">現在の太陽が出生水星にスクエア。考えと言葉がかみ合いにくく、誤解が生じやすい時期。重要なコミュニケーションは慎重に、確認を丁寧に行って。</p></div>
+</div>
+
+<!-- LWM + THEME -->
+<div class="sep"><span class="pill">恋愛・仕事・お金の傾向</span></div>
+<div class="lrow">
+  <div class="card lc">
+    <div class="li"><div class="lb">恋愛</div><div class="lt"><strong>深い愛情と軽やかな対話が共存するタイプ</strong>蟹座の太陽×魚座の月の深い感受性と、双子座ASCの明るいコミュニケーション力が融合。相手を深く愛しながら、会話と知的な刺激で関係を豊かに育てます。☉△☽の調和が内外のバランスを整えます。</div></div>
+    <div class="li"><div class="lb">仕事</div><div class="lt"><strong>情熱と知性で縦横無尽に活躍するタイプ</strong>太陽☌火星（蟹座）の行動力と双子座ASCのコミュニケーション力が組み合わさり、人と関わりながら成果を出す仕事で輝きます。教育・メディア・医療・カウンセリング・企画など多方面で才能が開花します。</div></div>
+    <div class="li"><div class="lb">お金</div><div class="lt"><strong>アイデアとコミュニケーションで豊かさを引き寄せる</strong>木星（10H）が水瓶座に位置し、社会的な活動から豊かさが広がる傾向。月△火星の行動力が収入を動かし、天王星☌金星の変化が新たな収入の扉を開きます。</div></div>
+  </div>
+  <div>
+    <div class="card thc">
+      <div class="the">♥ 人生のテーマ</div>
+      <div class="thq">「深い感性と軽やかな知性で、人と世界を繋ぐこと」</div>
+      <p class="thb">蟹座の太陽×魚座の月という水の深さに、双子座ASCの風の知性が加わった稀有な配置。深く感じ、鋭く考え、軽やかに伝える——この三つがあなたの核心です。今、木星が火星・月の両方にトラインを形成し、その才能が一気に開花する最高のタイミングを迎えています。</p>
+    </div>
+    <div class="card tpc">
+      <div class="tph">☽ 大切な時期（人生の転機）</div>
+      <div class="tpi"><span class="tpm">☽</span><span class="tpa">29歳前後（2014年頃）</span><span>土星回帰。自分の真の方向性が定まり、土台が固まる時期</span></div>
+      <div class="tpi"><span class="tpm">☽</span><span class="tpa">37歳前後（2022年頃）</span><span>木星が重要ポイントを通過。チャンスと出会いが広がる時期</span></div>
+      <div class="tpi"><span class="tpm">☽</span><span class="tpa">40〜41歳（2025〜26年）</span><span>木星☌火星△月。情熱・感性・機会が一致する最高の行動期◎</span></div>
+      <div class="tpi"><span class="tpm">☽</span><span class="tpa">49歳前後（2034年頃）</span><span>木星回帰。積み重ねた知性と経験が大きく実を結ぶ時期</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MESSAGE -->
+<div class="card mc">
+  <div class="mh">あなたへの星からのメッセージ</div>
+  <div class="mb">
+    <p>あなたは、蟹座の太陽・魚座の月・双子座のASCという水と風が交わる稀有な配置に、太陽☌火星の情熱と行動力を宿した、この世界にひとりだけの特別な存在です。</p>
+    <p>深く感じ、鋭く考え、軽やかに伝える——この三つがあなたの核心にあります。☉△☽の調和が意志と感情を一つにまとめ、水星△天王星の革新的な知性があなたをさらに輝かせます。</p>
+    <p>今まさに、木星が出生火星と月の両方に重なり、あなたの情熱・感性・行動力すべてが最大限に開花する、人生でも稀な黄金のタイミングを迎えています。</p>
+    <p>感じたことを言葉にして、動き出してください。星たちはいつも、あなたの味方です。</p>
+  </div>
+</div>
+
+<div class="footer">星読みは未来を決めるものではなく、<br>あなたらしく輝くためのヒントです</div>
+</div>
+</body>
+</html>

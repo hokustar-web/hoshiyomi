@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己分析レポート｜1978.06.21</title>
+<style>
+  :root {
+    --bg-top:    #dff0fb;
+    --bg-bottom: #cce3f4;
+    --accent:    #3a82c0;
+    --accent-light: #5fa8e0;
+    --navy:      #1a3a5c;
+    --navy-mid:  #2a5080;
+    --text:      #1e3a58;
+    --text-mid:  #2e5070;
+    --card-bg:   rgba(255,255,255,0.72);
+    --card-border: rgba(58,130,192,0.22);
+    --shimmer2:  #7ab8e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    min-height: 100vh; color: var(--text); position: relative; overflow-x: hidden;
+  }
+  #starfield-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  #starfield { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  body::before, body::after {
+    content: '✦'; position: fixed; font-size: 10px; color: var(--accent-light);
+    pointer-events: none; z-index: 0; animation: cssSparkle1 3.4s ease-in-out infinite; opacity: 0;
+  }
+  body::before { top: 18%; left: 7%; animation-delay: 0s; }
+  body::after  { top: 62%; right: 5%; animation-delay: 1.7s; }
+  @keyframes cssSparkle1 {
+    0%,100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    50%      { opacity: 0.6; transform: scale(1.4) rotate(45deg); }
+  }
+  .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+  header { text-align: center; margin-bottom: 48px; animation: floatY 5s ease-in-out infinite; }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .header-eyebrow { font-size: 11px; letter-spacing: 5px; color: var(--accent); opacity: 0.8; margin-bottom: 10px; }
+  header h1 {
+    font-size: clamp(22px, 4vw, 34px); font-weight: 700; letter-spacing: 6px;
+    color: var(--navy); margin-bottom: 14px; position: relative; display: inline-block;
+  }
+  header h1::after {
+    content: ''; display: block; margin: 10px auto 0; width: 60%; height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .header-meta { display: flex; justify-content: center; align-items: center; gap: 0; flex-wrap: wrap; margin-top: 14px; }
+  .header-meta span { font-size: 13px; color: var(--navy-mid); letter-spacing: 1px; padding: 0 16px; }
+  .header-meta span + span { border-left: 1px solid rgba(58,130,192,0.35); }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 15px; letter-spacing: 3px;
+    color: #fff; background: linear-gradient(90deg, var(--accent), var(--shimmer2));
+    border-radius: 20px; padding: 6px 20px; margin-bottom: 16px; position: relative; overflow: hidden; font-weight: 600;
+  }
+  .section-label::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+    animation: shimmer 2.8s ease-in-out infinite;
+  }
+  @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
+    padding: 28px 32px; margin-bottom: 28px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(58,130,192,0.08), 0 1px 4px rgba(58,130,192,0.06);
+    animation: glowPulse 4s ease-in-out infinite; transition: box-shadow 0.3s;
+  }
+  @keyframes glowPulse {
+    0%,100% { box-shadow: 0 4px 24px rgba(58,130,192,0.08), 0 1px 4px rgba(58,130,192,0.06); }
+    50%      { box-shadow: 0 6px 32px rgba(58,130,192,0.18), 0 2px 8px rgba(58,130,192,0.12); }
+  }
+  .card:hover { box-shadow: 0 8px 40px rgba(58,130,192,0.22), 0 2px 8px rgba(58,130,192,0.10); }
+  .card-title {
+    font-size: 19px; font-weight: 600; letter-spacing: 3px; color: var(--accent);
+    margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid rgba(58,130,192,0.18);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title .icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--shimmer2));
+    display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; flex-shrink: 0;
+  }
+  .profile-intro { font-size: 15px; line-height: 1.9; color: var(--navy); text-align: left; font-weight: 400; padding: 4px 0; }
+  h3 { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 2px; margin: 20px 0 8px; }
+  h3:first-child { margin-top: 0; }
+  p { font-size: 15px; line-height: 1.85; color: var(--text-mid); margin-bottom: 4px; }
+  ul.dot-list { list-style: none; padding: 0; margin: 4px 0 8px; }
+  ul.dot-list li { font-size: 14px; line-height: 1.8; color: var(--text-mid); padding-left: 18px; position: relative; margin-bottom: 3px; }
+  ul.dot-list li::before { content: '◆'; position: absolute; left: 0; color: var(--accent-light); font-size: 8px; top: 7px; }
+  ul.dot-list li strong { color: var(--navy); font-weight: 600; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 8px; }
+  @media (max-width: 660px) { .grid3 { grid-template-columns: 1fr; } }
+  .sub-card { background: rgba(255,255,255,0.5); border: 1px solid rgba(58,130,192,0.15); border-radius: 12px; padding: 16px 20px; }
+  .sub-card h4 { font-size: 12px; letter-spacing: 2px; color: var(--accent); margin-bottom: 8px; font-weight: 600; }
+  .sub-card p { font-size: 13px; line-height: 1.8; }
+  .highlight-box {
+    background: rgba(58,130,192,0.08); border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0; padding: 12px 18px; margin: 10px 0; font-size: 15px; line-height: 1.8; color: var(--navy);
+  }
+  .warn-box {
+    background: rgba(180,140,80,0.08); border: 1px solid rgba(180,140,80,0.25);
+    border-radius: 10px; padding: 12px 18px; margin: 10px 0 6px; font-size: 13px; line-height: 1.8; color: #7a6030;
+  }
+  .warn-box strong { color: #8a6820; }
+  .timing-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .timing-table th { background: rgba(58,130,192,0.12); color: var(--navy); font-weight: 600; letter-spacing: 1px; padding: 8px 14px; text-align: left; border-bottom: 1px solid rgba(58,130,192,0.2); }
+  .timing-table td { padding: 8px 14px; border-bottom: 1px solid rgba(58,130,192,0.08); color: var(--text-mid); vertical-align: top; line-height: 1.7; }
+  .timing-table tr:last-child td { border-bottom: none; }
+  .timing-table td.highlight { color: var(--navy); font-weight: 600; }
+  .timeline { position: relative; padding-left: 28px; margin: 8px 0; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1.5px; background: linear-gradient(180deg, var(--accent) 0%, transparent 100%); }
+  .tl-item { position: relative; margin-bottom: 16px; }
+  .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--accent-light); }
+  .tl-date { font-size: 11px; color: var(--accent); letter-spacing: 1px; font-weight: 600; margin-bottom: 2px; }
+  .tl-body { font-size: 14px; line-height: 1.75; color: var(--text-mid); }
+  .wind-prose-item { margin-bottom: 16px; padding: 14px 18px; background: rgba(255,255,255,0.45); border-radius: 10px; }
+  .wind-prose-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 7px; }
+  .tail-label { color: var(--accent); }
+  .head-label { color: #a05050; }
+  .compass-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 8px; }
+  @media (max-width: 660px) { .compass-grid { grid-template-columns: 1fr; } }
+  .compass-card { background: linear-gradient(160deg, rgba(58,130,192,0.10), rgba(58,130,192,0.04)); border: 1px solid rgba(58,130,192,0.25); border-radius: 14px; padding: 20px 18px; text-align: center; }
+  .compass-card .kw { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 10px; letter-spacing: 1px; }
+  .compass-card .kw-num { font-size: 10px; color: var(--accent-light); letter-spacing: 3px; display: block; margin-bottom: 6px; }
+  .compass-card p { font-size: 13px; line-height: 1.8; color: var(--text-mid); text-align: left; }
+  .notice { background: rgba(255,255,255,0.5); border: 1px solid rgba(58,130,192,0.15); border-radius: 12px; padding: 20px 24px; margin-top: 12px; font-size: 12px; line-height: 1.9; color: #4a6880; }
+  .notice p + p { margin-top: 10px; }
+  footer { text-align: center; margin-top: 60px; font-size: 11px; color: rgba(42,80,128,0.5); letter-spacing: 2px; line-height: 2; }
+</style>
+</head>
+<body>
+
+<div id="starfield-wrap"><canvas id="starfield"></canvas></div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-eyebrow">西洋占星術 ✦ 四柱推命 ✦ ヴェーダ　統合解析</div>
+    <h1>自己分析レポート</h1>
+    <div class="header-meta">
+      <span>生年月日　1978.06.21　04:08</span>
+      <span>出生地　静岡県三島市（35.12°N / 138.92°E）</span>
+      <span>解析日　2026.05.03</span>
+    </div>
+  </header>
+
+  <!-- あなたという人 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">✦</span>あなたという人</div>
+    <p class="profile-intro">
+      知性・言語・思想という道具を手に、自分の世界を力強く切り拓いてきた人です。明るく開かれた表面の奥に、哲学的な深さと揺るぎない価値観を持っており、「本物」と「本質」だけに向き合おうとする姿勢が一貫しています。人との対話の中でさらに輝き、自分でも気づかなかった可能性を引き出される経験を積み重ねてきた傾向があります。人生のテーマは「知性と財と人とのつながりで、自分だけの王国を育て上げること」です。
+    </p>
+  </div>
+
+  <!-- 1. 自分の核を知る -->
+  <div class="section-label">1. 自分の核を知る</div>
+  <div class="card">
+    <h3>基本性格・気質</h3>
+    <p>太陽・水星・木星がすべて1H（双子座）に集結するという、知性・表現力・拡張力が一点集中した希少な配置を持っています。ブダアディティヤヨーガとダナヨーガが重なり、知性が財と成功の核心となっています。日主・甲（陽木）が示す通り、大木のように自分の根をしっかり張りながら、天に向かって力強く伸びていく気質を持っています。3占術すべてで「知性・拡張・財・人との接続」が際立っており、これが気質の根幹です。</p>
+
+    <h3>強み・才能</h3>
+    <ul class="dot-list">
+      <li><strong>圧倒的な知性と表現力：</strong>太陽・水星・木星の三星集結（ブダアディティヤヨーガ）が示す、言語・思考・発信の複合的な才能。伝えれば伝えるほど可能性が広がります</li>
+      <li><strong>財を引き寄せる配置：</strong>ダナヨーガ（財運ヨーガ）とアディヨーガが重なり、知恵と行動が豊かさに直結する傾向があります</li>
+      <li><strong>革新的なビジョン：</strong>木星△天王星（最タイト）が示す、大きな視野と既存の枠を超えた発想力。時代を先読みする感覚があります</li>
+      <li><strong>社会的成功の素質：</strong>ラージャヨーガとヨガカーラカ（土星）の組み合わせが、長期的に積み上げることで社会的な地位と評価が得られることを示しています</li>
+    </ul>
+
+    <h3>弱み・苦手分野</h3>
+    <ul class="dot-list">
+      <li>太陽☍月（最タイト orb0.82）が示す通り、自己表現への衝動と感情的なニーズが対立しやすく、内側で綱引きが起きる場面があります。→ <strong>「今、頭と心のどちらが主導しているか」を意識することが助けになります。</strong></li>
+      <li>知的エネルギーが高い分、考えすぎて動けなくなる「思考過多」の局面が出やすい傾向があります。→ <strong>「まず小さく動いて考える」サイクルが突破口になります。</strong></li>
+      <li>ケーマドルマヨーガの影響で、感情的な孤立感が内側に溜まりやすい傾向があります。→ <strong>「内側の感情を外に出す習慣」（日記・対話・創作）が長期的な安定の鍵です。</strong></li>
+    </ul>
+
+    <h3>価値観</h3>
+    <p>知性・自由・拡張・誠実さ・本質。表面的なことには興味が持てず、「本物かどうか」「本質があるかどうか」を常に問い続けます。日主・甲の「まっすぐに伸びる」気質が、妥協しない誠実さとして現れる傾向があります。</p>
+
+    <h3>人生のテーマ／使命</h3>
+    <div class="highlight-box">
+      「知性・言語・人とのつながりを武器に、自分だけの豊かな世界を開拓し、その豊かさを周囲と分かち合うこと」が生涯のテーマです。今、ラーフ・マハダシャーという18年間の大きな拡張期の入口に立っており、これからが本格的な開花の時代です。
+    </div>
+  </div>
+
+  <!-- 2. 仕事・キャリアの軸 -->
+  <div class="section-label">2. 仕事・キャリアの軸</div>
+  <div class="card">
+    <div class="grid2">
+      <div class="sub-card">
+        <h4>適職傾向</h4>
+        <p>知性・言語・哲学・教育・出版・メディア・コンサルティング・法律・国際的な分野が特に向いている傾向があります。自分の思想や世界観を発信できる仕事、広い視野が活かせる分野と最も相性がよいです。</p>
+      </div>
+      <div class="sub-card">
+        <h4>働き方スタイル</h4>
+        <p>自律性と裁量を持ちながら、対話・交流・発信が循環する環境が理想です。型にはまった仕事より、自分の発想を活かせるポジションでパフォーマンスが最大化します。</p>
+      </div>
+      <div class="sub-card">
+        <h4>リーダーシップタイプ</h4>
+        <p>ビジョンと知性で引っ張る「思想型リーダー」です。木星△天王星が示す通り、革新的なアイデアと大きな視野で方向性を示し、周囲をインスパイアするスタイルが自然に出ます。</p>
+      </div>
+      <div class="sub-card">
+        <h4>副業・複業適性</h4>
+        <p>発信・教える・コンサル・著作・プロデュースと特に相性がよい傾向があります。ラーフ・マハダシャー（2025年〜）の18年間は、新しい分野・新しい形での副業展開が特に力を発揮します。</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:22px;">キャリアの開花時期</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">34〜44歳頃（大運：甲寅）</div>
+        <div class="tl-body">日主と同じ甲の大運。比肩の力で独立心・専門性・個人のブランドが確立された時期。これまでの積み上げの核となった時間です。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023年頃〜2033年頃（大運：癸丑）</div>
+        <div class="tl-body">印綬・知恵・学びの大運。これまでの経験が深みと洗練へと昇華される時期。精神的な成熟と知的な充実が最も高まる10年間です。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025年12月30日〜2043年12月30日（ラーフ・マハダシャー18年間）</div>
+        <div class="tl-body">人生最大の拡張期。新しいステージ・新しいフィールド・予測を超えた展開が18年にわたって続く、文字通りの黄金時代の幕開けです。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 仕事の進め方・思考特性 -->
+  <div class="section-label">3. 仕事の進め方・思考特性</div>
+  <div class="card">
+    <div class="grid3">
+      <div class="sub-card">
+        <h4>意思決定スタイル</h4>
+        <p>大量の情報を素早く整理し、直観と論理を融合させて判断するタイプです。「直感が先に動き、後で論理が追いつく」場面も多く、その直感の精度は高い傾向があります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>集中力・タスク処理</h4>
+        <p>知的な刺激がある仕事への集中力は際立っています。複数のテーマを同時進行させながら成果を出せる、マルチタスク型の思考処理が得意な傾向があります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>創造性 vs 実務遂行力</h4>
+        <p>創造性が際立って強い一方、実務遂行力も持っています。ただし、創造的なインスピレーションが出ているときに細かい事務作業を挟むと流れが止まりやすい傾向があります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>変化への適応力</h4>
+        <p>非常に高い傾向があります。ラーフの影響もあり、変化・新しい環境・未知の領域に対して本能的に惹かれる傾向があります。慣れ親しんだ場所より、開拓の方が力が出ます。</p>
+      </div>
+      <div class="sub-card">
+        <h4>学び方・成長の仕方</h4>
+        <p>読む・聞く・対話するすべてから高速で学ぶタイプです。インプットとアウトプットを交互に回す速度が速く、「教えながら学ぶ」形が最も成長を加速させます。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 人間関係・コミュニケーション -->
+  <div class="section-label">4. 人間関係・コミュニケーション</div>
+  <div class="card">
+    <div class="grid2">
+      <div class="sub-card">
+        <h4>コミュニケーションスタイル</h4>
+        <p>知的で豊かな語彙と、相手を惹きつけるユーモアと温かさが自然に混ざります。話すほど面白くなり、聞くほど深くなる——対話そのものが才能の表現の場になっています。</p>
+      </div>
+      <div class="sub-card">
+        <h4>対人関係の傾向</h4>
+        <p>幅広い人間関係を持ちながら、本音で語り合える少数の深い関係を特に大切にする傾向があります。太陽1H・アディヨーガの影響で、「人に会うたびに何かを得て帰ってくる」感覚が自然にあります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>上司との相性</h4>
+        <p>自由と信頼を与えてくれる上司、知的な対話ができる上司と最高の協働関係が生まれます。逆に、思想や発想を制限されたり、単純作業だけを求められる環境には強いフラストレーションを感じる傾向があります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>部下・後輩との関わり方</h4>
+        <p>知識と視野を惜しみなく与え、相手の可能性を信じて大きく任せるスタイルが自然に出ます。「教える」ことで自分もさらに成長する、相互拡張のサイクルが得意です。</p>
+      </div>
+      <div class="sub-card">
+        <h4>苦手なタイプ</h4>
+        <p>思考が浅く表面的なことしか話せない人、変化や新しいことを徹底的に嫌う人、知的誠実さを欠く人。また、感情だけで物事を判断して論理を受け付けない人との長期的な関わりは消耗しやすい傾向があります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>信頼関係の築き方</h4>
+        <p>知的な誠実さ・一貫した姿勢・言葉と行動の一致で信頼を育てます。表面的なお世辞や社交辞令より、本音の対話と長期的な誠実さが信頼の最大の材料です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. メンタル・ストレス -->
+  <div class="section-label">5. メンタル・ストレス</div>
+  <div class="card">
+    <div class="grid2">
+      <div class="sub-card">
+        <h4>ストレスの原因</h4>
+        <ul class="dot-list">
+          <li>知的な刺激がなく、自分の思考や発想が活かされない環境</li>
+          <li>自分の表現や言葉が誤解された、または封じられたとき</li>
+          <li>太陽☍月の緊張から来る、「やりたいこと」と「感じていること」のズレが続くとき</li>
+          <li>人間関係での誠実さの欠如や、裏切りを感じたとき</li>
+        </ul>
+      </div>
+      <div class="sub-card">
+        <h4>不調のサイン</h4>
+        <p>過剰に饒舌になって思考が止まらなくなるか、逆に急に無気力になって何も発信したくなくなる——この振れ幅が大きくなったときは、内側が限界に近いサインかもしれません。</p>
+      </div>
+      <div class="sub-card">
+        <h4>回復方法・セルフケア</h4>
+        <p>好きなテーマの本を読む、信頼できる人と長い対話をする、自然の中を歩く——これらが最も効果的な傾向があります。「思考をインプット以外で動かさない時間」を意識的に作ることも重要です。</p>
+      </div>
+      <div class="sub-card">
+        <h4>モチベーションの源泉</h4>
+        <p>「新しいことを知る喜び」「自分の発想が形になった手応え」「誰かの視野を広げることができた実感」——この三つが重なるとき、エネルギーが底から湧いてくる傾向があります。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 恋愛・パートナーシップ・家庭 -->
+  <div class="section-label">6. 恋愛・パートナーシップ・家庭</div>
+  <div class="card">
+    <div class="grid2">
+      <div class="sub-card">
+        <h4>恋愛傾向</h4>
+        <p>知的な共鳴と哲学的な対話から始まる恋愛が多い傾向があります。「この人とは話し続けられる」「この人は自分の世界を広げてくれる」という感覚が恋愛の核心になりやすく、好きになると真剣に全力で向き合います。</p>
+      </div>
+      <div class="sub-card">
+        <h4>パートナーシップの築き方</h4>
+        <p>対等で知的・哲学的に刺激し合える関係を理想とします。太陽☍月が示す通り、パートナーとの関係の中で自分の光と影を深く学ぶ傾向があります。自由と信頼の相互尊重が長続きの鍵です。</p>
+      </div>
+      <div class="sub-card">
+        <h4>結婚観</h4>
+        <p>「共に成長し、共に世界を広げられるか」が最も重要な基準です。形式や安定より、精神的な充実と知的な共鳴を求める傾向があります。長く一緒にいるほど豊かになれる関係が理想です。</p>
+      </div>
+      <div class="sub-card">
+        <h4>家庭との両立スタイル</h4>
+        <p>家庭を「思想と対話が生まれる場所」として大切にしたい傾向があります。仕事と家庭の両方で知的な充実を求めるため、意識的な切り替えと「何もしない時間」の確保が長期的なバランスに重要です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. お金・豊かさ -->
+  <div class="section-label">7. お金・豊かさ</div>
+  <div class="card">
+    <div class="grid2">
+      <div class="sub-card">
+        <h4>金銭感覚</h4>
+        <p>知識・体験・本物・自由への投資を惜しまない傾向があります。ダナヨーガが示す通り、知恵が財に変わりやすい配置を持っており、自分の専門性と発信が収入の核心になります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>稼ぎ方の得意パターン</h4>
+        <p>知識・思想・発信・コンサル・教育が最も自然な稼ぎ方です。ラーフ・マハダシャーの18年間は、予測を超えた新しい収入源が開拓される可能性が高く、今まで想定していなかった形で豊かさが来る傾向があります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>出ていきやすい使い方（注意点）</h4>
+        <p>知識・体験・旅・人との交流への支出が積み重なりやすい傾向があります。これ自体は資産への投資ですが、ラーフ期は「大きなチャンスに見えるもの」への衝動的な出費にも注意が必要な時期です。</p>
+      </div>
+      <div class="sub-card">
+        <h4>投資・資産形成のスタンス</h4>
+        <p>知的に分析した上で動くため、短期的な失敗は少ない傾向があります。ラーフ期は大きなチャンスも来ますが、慎重な熟慮と第三者への相談が堅実な資産形成の鍵になります。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 健康・体質 -->
+  <div class="section-label">8. 健康・体質</div>
+  <div class="card">
+    <div class="warn-box">
+      <strong>⚠ ご注意：</strong>以下は占いの象徴体系に基づく傾向であり、医療行為・診断ではありません。体調の不安は必ず医療機関で相談してください。
+    </div>
+    <div class="grid3" style="margin-top:16px;">
+      <div class="sub-card">
+        <h4>気をつけたい部位の傾向</h4>
+        <p>神経系・呼吸器・肺・肩・腕など、双子座・1Hに関わる部位に負荷がかかりやすい傾向が複数の象徴から読み取れます。思考過多による頭部・首の疲れにも注意が必要かもしれません。</p>
+      </div>
+      <div class="sub-card">
+        <h4>エネルギーの使い方の癖</h4>
+        <p>知的活動に大量のエネルギーを注ぐ傾向があります。思考が止まらない状態が続くと消耗が蓄積しやすく、「頭をオフにする」意識的な時間が健康維持の要になります。</p>
+      </div>
+      <div class="sub-card">
+        <h4>セルフケアの方向性</h4>
+        <p>規則正しい睡眠・軽い運動・自然の中での時間——特に「考えなくていい時間」を日常に組み込むことが最も効果的な傾向があります。呼吸を整える習慣（瞑想・深呼吸）も有効です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. 運気・タイミング -->
+  <div class="section-label">9. 運気・タイミング</div>
+  <div class="card">
+
+    <h3>今のフェーズ（2026年5月3日時点・47歳）</h3>
+    <table class="timing-table">
+      <thead>
+        <tr><th>占術</th><th>現在地</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="highlight">インド（ダシャー）</td>
+          <td><strong>ラーフ・マハダシャー開幕直後</strong>（2025年12月30日〜2043年12月30日）<br>アンタルダシャー：ラーフ（2025年12月30日〜2028年9月11日）</td>
+        </tr>
+        <tr>
+          <td class="highlight">四柱推命（大運）</td>
+          <td><strong>癸丑大運</strong>（44.92〜54.92歳：2023年頃〜2033年頃）</td>
+        </tr>
+        <tr>
+          <td class="highlight">西洋（トランジット）</td>
+          <td>冥王星☍出生金星（最タイト orb0.17）、太陽☍出生天王星（orb0.11）、土星△出生太陽（orb0.78）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box" style="margin-top:12px;">
+      現在は18年間のラーフ・マハダシャーが始まったばかりの「拡張の助走期」にいます。ラーフのアンタルダシャー（〜2028年9月11日）は、変化・出会い・新しい分野への進出が急加速するフェーズです。同時に冥王星が出生金星に☍を形成するトランジットが進行中であり、価値観・豊かさ・関係性の「古い形が終わり、新しい本物へと更新される」深い変容のプロセスが起きています。
+    </div>
+
+    <h3 style="margin-top:24px;">直近1年の流れ</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2025年12月30日〜2028年9月11日（アンタルダシャー：ラーフ×ラーフ）</div>
+        <div class="tl-body">拡張・変化・出会いが急加速する約2年9ヶ月。予測を超えた展開が連続する時期。好奇心の赴くままに動くことが最善の戦略です。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026年の流年：丙午（食神・死）</div>
+        <div class="tl-body">食神は創造性・自由な表現・享受。死は終わりと同時に「次への準備」を意味します。創造的な表現に思いきり投資する年です。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2027年の流年：丁未（傷官・墓）</div>
+        <div class="tl-body">傷官は既存の枠を壊す革新のエネルギー。現状の再構築と次のステージへの移行期として機能する年です。</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:20px;">中期（3〜5年）の節目</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2028年9月11日〜2031年2月5日（アンタルダシャー：木星）</div>
+        <div class="tl-body">ラーフ期の中で最も豊かで恵まれた約2年5ヶ月。知識・チャンス・人脈・豊かさが一気に広がる黄金フェーズ。この時期の行動が人生後半の土台になります。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2031年の流年：辛亥（正官・長生）</div>
+        <div class="tl-body">正官は社会的な評価と信頼。長生は新しい生命力の芽生え。この年を起点に、社会的な立ち位置が安定・確立されていく傾向があります。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2033年頃〜（大運：壬子）</div>
+        <div class="tl-body">印綬・偏印と続く知恵の大運へ。学びと精神性が深化し、ラーフ期の拡張が内側の知恵として定着していくフェーズです。</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:20px;">追い風 / 逆風テーマ</h3>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:12px;color:var(--accent);margin-bottom:12px;letter-spacing:1px;font-weight:600;">▲ 追い風になるテーマ</div>
+
+      <div class="wind-prose-item">
+        <div class="wind-prose-label tail-label">新しい分野・出会い・挑戦への飛び込み</div>
+        <p>ラーフ・マハダシャーは「これまでの自分の枠を超えた新しいステージ」に最大の力が宿ります。今まで踏み込んだことのない分野、出会ったことのないタイプの人、試したことのない形の仕事——これらすべてへの積極的な接触が、この18年間の最大の追い風です。居心地のよい場所に留まることより、未知の場所に飛び込むことが力を発揮します。</p>
+      </div>
+
+      <div class="wind-prose-item">
+        <div class="wind-prose-label tail-label">知識・思想・発信の最大化</div>
+        <p>太陽・水星・木星が1H（西洋）、2H（ヴェーダ）に集結するこの配置は、「知識を発信すれば発信するほど豊かさが増す」ことを示しています。ラーフ期はその効果が特に増幅されます。書く・話す・教える・発信するすべての行為に全力を注ぐことが、財と評価の両方を引き寄せます。</p>
+      </div>
+
+      <div class="wind-prose-item">
+        <div class="wind-prose-label tail-label">価値観の更新と本物への移行</div>
+        <p>冥王星が出生金星に☍を形成するトランジットは「古い豊かさの形が終わり、本物の豊かさへと更新される」深い変容を示しています。これは苦しい変化に見えることもありますが、実際には「偽物を手放して本物が入ってくる」プロセスです。この変容に抵抗せず、むしろ積極的に古いものを手放していくことが、大きな追い風になります。</p>
+      </div>
+
+      <div class="wind-prose-item" style="margin-bottom:0;">
+        <div class="wind-prose-label tail-label">2028〜2031年の木星AD・黄金期</div>
+        <p>2028年9月11日から始まる木星アンタルダシャーは、ラーフ期の中で最も拡張と豊かさに満ちた約2年5ヶ月です。この時期に向けて、今から「種を蒔く」行動——新しい人脈・新しいスキル・新しい発信の仕組み——を準備しておくことが、黄金期を最大限に活かすための最重要戦略です。</p>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:12px;color:#a05050;margin-bottom:12px;letter-spacing:1px;font-weight:600;">▽ 逆風が吹くテーマ</div>
+
+      <div class="wind-prose-item">
+        <div class="wind-prose-label head-label">変化への過剰な期待と焦り</div>
+        <p>ラーフ期は変化と拡張のエネルギーが非常に強いため、「早く変わらなければ」「もっと大きく動かなければ」という焦りが内側から湧きやすくなります。しかし、ラーフ期に最も危険なのは焦りからの衝動的な大きな決断です。動くことと焦ることは違います。「変化は歓迎しながら、決断はゆっくり熟慮する」という姿勢が、この時期の逆風を防ぎます。</p>
+      </div>
+
+      <div class="wind-prose-item">
+        <div class="wind-prose-label head-label">太陽☍月の内的葛藤の増幅</div>
+        <p>ラーフ期は感情と自己表現への衝動が増幅される傾向があります。太陽☍月の緊張——「やりたいこと」と「感じていること」の対立——がより鮮明になりやすい時期です。この葛藤を「問題」として処理しようとするより、「自分の内側を知るための情報」として受け取ることで、消耗を大幅に減らすことができます。</p>
+      </div>
+
+      <div class="wind-prose-item" style="margin-bottom:0;">
+        <div class="wind-prose-label head-label">知的エネルギーの過放出による疲弊</div>
+        <p>知性と発信への追い風が強まる分、思考を止められない・書き続けてしまう・話し続けてしまう、という過放出の傾向が強まりやすい時期でもあります。知的なエネルギーは本来この人の最大の資産ですが、管理なしに放出し続けると燃え尽きのリスクがあります。「満タンを維持しながら使う」という感覚で、インプットとオフの時間を戦略的に確保することが重要です。</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px;">鍵となる時期（向こう3年）</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2026年（食神・創造の年）</div>
+        <div class="tl-body">創造性と自由な表現に全力投球。ラーフ期最初の本格稼働年。新しい形での発信・出会い・挑戦の種まきを積極的に行う年</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2027〜2028年（傷官・偏財の変革期）</div>
+        <div class="tl-body">既存の枠を壊しながら次を構築する移行期。2028年9月の木星ADスタートに向けた最終準備の時間です</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2028年9月11日〜2031年2月5日（木星AD・黄金期）</div>
+        <div class="tl-body">ラーフ期最大の黄金フェーズ。知識・人脈・豊かさが一気に開花。この時期に向けて今から準備することが最重要です</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 羅針盤 -->
+  <div class="section-label">✦ これからを生きる三つの羅針盤</div>
+  <div class="card">
+    <div class="compass-grid">
+      <div class="compass-card">
+        <span class="kw-num">COMPASS  01</span>
+        <div class="kw">枠の外へ飛び込む</div>
+        <p>ラーフ・マハダシャーの18年間は「今まで行ったことのない場所に力がある」時代です。居心地のよい枠の外——新しい分野、新しい出会い、新しい形の発信——に積極的に飛び込むことが、この時代を最大限に生きる羅針盤です。</p>
+      </div>
+      <div class="compass-card">
+        <span class="kw-num">COMPASS  02</span>
+        <div class="kw">知性を惜しみなく発信する</div>
+        <p>太陽・水星・木星の三星と、ダナヨーガ・ブダアディティヤヨーガが示す通り、あなたの知識と思想は「出せば出すほど豊かさが増す」配置です。溜め込まず、惜しみなく発信することが財と評価の最大の源泉です。</p>
+      </div>
+      <div class="compass-card">
+        <span class="kw-num">COMPASS  03</span>
+        <div class="kw">本物だけを選ぶ</div>
+        <p>冥王星が金星に☍を形成する今、「本物への移行」が求められています。仕事・関係・価値観・豊かさの形——どの分野でも「本物かどうか」を基準に選ぶことが、これからの18年間を最も豊かにする羅針盤です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 注意書き -->
+  <div class="notice">
+    <p><strong>⚠ ご利用にあたって</strong><br>
+    本レポートは西洋占星術・四柱推命・インド占星術（ヴェーダ）の解析結果を統合したものです。占いという伝統的な象徴体系に基づくものであり、科学的根拠を持つものではありません。何らかの結果や未来を約束・保証するものでもありません。ご自身の特性を多角的に振り返り、これからの選択を考えるための「自己理解のヒント」として、お役立てください。</p>
+    <p><strong>⚠ 健康に関する内容について</strong><br>
+    本レポートに記載される健康・体質に関する内容は、あくまで占いの象徴体系に基づく傾向を述べたものであり、医療行為・診断・治療ではありません。絶対に鵜呑みにせず、体調に不安がある場合は必ず医療機関を受診してください。本レポートを根拠に、医師の診断・治療方針を変更したり、自己判断で薬の服用を中止したりしないでください。</p>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  西洋占星術 ✦ 四柱推命 ✦ ヴェーダ　統合解析<br>
+  1978.06.21　生まれ　／　解析日 2026.05.03
+</footer>
+
+<!-- Starfield JS -->
+<script>
+(function(){
+  const canvas = document.getElementById('starfield');
+  const ctx    = canvas.getContext('2d');
+  let W, H, stars=[], glitters=[], bursts=[];
+  function resize(){
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  const COLS = ['#a8d4f0','#c8e8ff','#7ab8e0','#d0eeff','#5fa8e0','#b8e0ff','#ffffff'];
+  const SYMS = ['✦','✧','✸','✺','★','·','•'];
+  function mkStar(){
+    const sym = Math.random() < 0.20;
+    return { x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.8+0.4,
+      phase:Math.random()*Math.PI*2, freq:Math.random()*0.8+0.3,
+      col:COLS[Math.floor(Math.random()*COLS.length)], sym, size:sym?Math.random()*8+6:0 };
+  }
+  function mkGlitter(){
+    return { x:Math.random()*W, y:H+Math.random()*40,
+      vy:-(Math.random()*0.6+0.2), vx:(Math.random()-0.5)*0.5,
+      life:0, spd:Math.random()*0.004+0.002,
+      size:Math.random()*12+7, sym:SYMS[Math.floor(Math.random()*SYMS.length)],
+      col:COLS[Math.floor(Math.random()*COLS.length)] };
+  }
+  function mkBurst(){
+    return { x:Math.random()*W, y:Math.random()*H,
+      life:Math.random(), spd:Math.random()*0.008+0.004,
+      base:Math.random()*16+10, col:COLS[Math.floor(Math.random()*COLS.length)] };
+  }
+  function init(){
+    stars    = Array.from({length:Math.ceil(W*H/3500)}, mkStar);
+    glitters = Array.from({length:60}, mkGlitter);
+    bursts   = Array.from({length:14}, mkBurst);
+  }
+  let last=0;
+  function draw(ts){
+    const dt = Math.min((ts-last)/1000, 0.05); last=ts;
+    ctx.clearRect(0,0,W,H);
+    const t=ts/1000;
+    for(const s of stars){
+      const a=0.12+0.65*(Math.sin(t*s.freq*Math.PI*2+s.phase)*0.5+0.5);
+      ctx.globalAlpha=a; ctx.fillStyle=s.col;
+      if(s.sym){ ctx.font=`${s.size}px serif`; ctx.fillText('✦',s.x,s.y); }
+      else { ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); }
+    }
+    for(const g of glitters){
+      g.x+=g.vx; g.y+=g.vy; g.life+=g.spd;
+      if(g.life>=1){ Object.assign(g,mkGlitter()); continue; }
+      ctx.globalAlpha=Math.sin(g.life*Math.PI)*0.8;
+      ctx.fillStyle=g.col; ctx.font=`${g.size}px serif`;
+      ctx.fillText(g.sym,g.x,g.y);
+    }
+    for(const b of bursts){
+      b.life+=b.spd;
+      if(b.life>=1){ Object.assign(b,mkBurst()); b.life=0; continue; }
+      const env=b.life<0.25?b.life/0.25:1-(b.life-0.25)/0.75;
+      ctx.globalAlpha=env*0.85; ctx.fillStyle=b.col;
+      ctx.font=`${b.base*(0.5+env*0.5)}px serif`; ctx.fillText('✦',b.x,b.y);
+    }
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{ resize(); init(); });
+  resize(); init();
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
